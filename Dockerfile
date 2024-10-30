@@ -1,5 +1,5 @@
 # Usa una imagen base de PHP con extensiones para Laravel
-FROM php:8.1-fpm
+FROM php:8.2-fpm
 
 # Instala las extensiones necesarias de PHP y Composer
 RUN apt-get update && apt-get install -y \
@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     unzip \
     git \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd
 
 # Instala Composer
@@ -27,7 +28,7 @@ WORKDIR /var/www
 RUN composer install --optimize-autoloader --no-dev
 
 # Permite acceso de red para Laravel en el puerto 8000
-EXPOSE 80
+EXPOSE 8000
 
 # Comando para iniciar Laravel
-CMD php artisan serve --host=0.0.0.0 --port=80
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
