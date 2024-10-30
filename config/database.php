@@ -97,6 +97,21 @@ return [
             'sslmode' => 'prefer',
         ],
 
+        'render' => [
+            'driver' => 'pgsql',
+            'url' => env('DB_URL'),
+            'host' => env('DB_HOST__RENDER', 'dpg-csh575pu0jms739rs980-a'),
+            'port' => env('DB_PORT__RENDER', '5432'),
+            'database' => env('DB_DATABASE__RENDER', 'bdsistemainventario23'),
+            'username' => env('DB_USERNAME__RENDER', 'marcos'),
+            'password' => env('DB_PASSWORD__RENDER', 'auj8IvbxFmLez3O3NZoa5yqnBD5Zsrui'),
+            'charset' => env('DB_CHARSET', 'utf8'),
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'search_path' => 'public',
+            'sslmode' => 'prefer',
+        ],
+
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DB_URL'),
