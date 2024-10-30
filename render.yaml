@@ -1,7 +1,16 @@
 services:
   - type: web
-    name: sistema-inventario
+    name: SistemaInventarioSB
     env: php
+    runtime: php  # Esto es clave para que Render detecte PHP
+    buildCommand: 
+      - composer install
+    startCommand: php artisan serve --host 0.0.0.0 --port 10000
     plan: free
-    buildCommand: composer install
-    startCommand: php-fpm
+    region: oregon  # o elige la región que prefieras
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_KEY
+        value: "base64:O/m0KKeAQByzyzrK/cJXJSgIN0znpXwYccv78Ar5e94="
+
