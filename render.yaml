@@ -1,13 +1,15 @@
 services:
   - type: web
     name: SistemaInventarioSB
-    env: docker  # Usará Docker en vez de una opción predeterminada de lenguaje
+    env: docker
     plan: free
-    dockerfilePath: ./Dockerfile  # Indica el Dockerfile en la raíz
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: APP_ENV
         value: production
       - key: APP_KEY
-        value: "base64:O/m0KKeAQByzyzrK/cJXJSgIN0znpXwYccv78Ar5e94="
+        value: "base64:TU_LLAVE_GENERADA"
     healthCheckPath: "/"
-
+    ports:
+      - port: 80
+    startCommand: "php artisan serve --host 0.0.0.0 --port 80"
