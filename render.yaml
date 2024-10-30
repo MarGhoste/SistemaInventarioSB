@@ -1,16 +1,13 @@
 services:
   - type: web
     name: SistemaInventarioSB
-    env: php
-    runtime: php  # Esto es clave para que Render detecte PHP
-    buildCommand: 
-      - composer install
-    startCommand: php artisan serve --host 0.0.0.0 --port 10000
+    env: docker  # Usará Docker en vez de una opción predeterminada de lenguaje
     plan: free
-    region: oregon  # o elige la región que prefieras
+    dockerfilePath: ./Dockerfile  # Indica el Dockerfile en la raíz
     envVars:
       - key: APP_ENV
         value: production
       - key: APP_KEY
         value: "base64:O/m0KKeAQByzyzrK/cJXJSgIN0znpXwYccv78Ar5e94="
+    healthCheckPath: "/"
 
